@@ -1,31 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:newsly_app/views/home.dart';
+import 'package:newsly_app/Routes/routes.dart';
+import 'package:newsly_app/Routes/routes_name.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:newsly_app/view_models/auth_viewmodel.dart';
+import 'package:newsly_app/view_models/bottomnavbar_viewmodel.dart';
+import 'package:newsly_app/view_models/onboarding_viewmodel.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
+        ChangeNotifierProvider(create: (context) => BottomNavBarVM()),
+        ChangeNotifierProvider(create: (context) => AuthViewModel())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: splash,
+        onGenerateRoute: generateRoute,
       ),
-      home: const HomeScreen(),
     );
   }
 }

@@ -1,0 +1,9 @@
+const String splash = '/splash';
+const String home = '/home';
+const String onboardingscreen = '/onboardingscreen';
+const String bottomnavbar = '/bottomnavbar';
+const String savedartical = '/savedartical';
+const String newssource = '/newssource';
+const String profile = '/profile';
+const String login = '/login';
+const String signup = '/signup';
