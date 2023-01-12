@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SavedArticalScreen extends StatelessWidget {
-  const SavedArticalScreen({super.key});
+class SavedArticlesScreen extends StatelessWidget {
+  const SavedArticlesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

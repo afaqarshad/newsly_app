@@ -14,20 +14,20 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case splash:
       return MaterialPageRoute(builder: (context) => const SplashScreen());
-    case onboardingscreen:
+    case onBoardingScreen:
       return MaterialPageRoute(builder: (context) => const ProfilScreen());
     case home:
-      return MaterialPageRoute(builder: (context) => const HomeScreen());
-    case savedartical:
+      return MaterialPageRoute(builder: (context) => HomeScreen());
+    case savedArticales:
       return MaterialPageRoute(
-          builder: (context) => const SavedArticalScreen());
-    case newssource:
+          builder: (context) => const SavedArticlesScreen());
+    case newsSource:
       return MaterialPageRoute(builder: (context) => const NewsSourceScreen());
-    case login:
+    case logIn:
       return MaterialPageRoute(builder: (context) => LoginScreen());
-    case signup:
+    case signUp:
       return MaterialPageRoute(builder: (context) => SignUpScreen());
-    case bottomnavbar:
+    case bottomNavBar:
       return MaterialPageRoute(builder: (context) => BottomNavBar());
     default:
       return MaterialPageRoute(

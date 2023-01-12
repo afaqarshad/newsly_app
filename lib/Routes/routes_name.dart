@@ -1,9 +1,9 @@
 const String splash = '/splash';
 const String home = '/home';
-const String onboardingscreen = '/onboardingscreen';
-const String bottomnavbar = '/bottomnavbar';
-const String savedartical = '/savedartical';
-const String newssource = '/newssource';
+const String onBoardingScreen = '/onboardingscreen';
+const String bottomNavBar = '/bottomnavbar';
+const String savedArticales = '/savedartical';
+const String newsSource = '/newssource';
 const String profile = '/profile';
-const String login = '/login';
-const String signup = '/signup';
+const String logIn = '/login';
+const String signUp = '/signup';

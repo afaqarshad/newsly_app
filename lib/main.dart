@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
-        ChangeNotifierProvider(create: (context) => BottomNavBarVM()),
+        ChangeNotifierProvider(create: (context) => BottomNavBarViewModel()),
         ChangeNotifierProvider(create: (context) => AuthViewModel())
       ],
       child: MaterialApp(

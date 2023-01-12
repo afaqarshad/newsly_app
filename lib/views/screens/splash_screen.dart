@@ -13,12 +13,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     startDelay();
-    print("Splash init");
+    debugPrint("Splash init");
   }
 
   startDelay() {
-    Future.delayed(const Duration(seconds: 6), () {
-      print("Time End");
+    Future.delayed(const Duration(seconds: 2), () {
+      debugPrint("Time End");
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: ((context) => const OnboardingView())),
           (route) => false);

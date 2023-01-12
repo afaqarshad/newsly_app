@@ -4,18 +4,17 @@ import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/sevices/authentication_service.dart';
 
 class AuthViewModel with ChangeNotifier {
-  final AuthenticationServices authService = AuthenticationServices();
+  final AuthenticationService authService = AuthenticationService();
 
-  void signUp(
-      {required BuildContext context, required email, required password}) {
-    authService.signUpAuthService(email, password);
-    Navigator.pushNamed(context, bottomnavbar);
+  void signUp({required context, required email, required password}) {
+    authService.signUpWithEmailAndPassword(email, password);
+    Navigator.pushNamed(context, bottomNavBar);
     notifyListeners();
   }
 
   void login({required context, required email, required password}) {
     authService.loginAuthentication(email, password);
-    Navigator.pushNamed(context, bottomnavbar);
+    Navigator.pushNamed(context, bottomNavBar);
     notifyListeners();
   }
 
@@ -26,7 +25,7 @@ class AuthViewModel with ChangeNotifier {
 
   void signInWithGoogle({required context}) async {
     await authService.googleAuthentication();
-    Navigator.pushNamed(context, bottomnavbar);
+    Navigator.pushNamed(context, bottomNavBar);
     notifyListeners();
   }
 }
