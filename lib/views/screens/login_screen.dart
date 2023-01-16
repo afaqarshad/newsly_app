@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
-import 'package:newsly_app/components/widgets/textformfields.dart';
+import 'package:newsly_app/resources/components/widgets/textformfields.dart';
 import 'package:newsly_app/view_models/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +26,8 @@ class LoginScreen extends StatelessWidget {
                   hintText: 'E-mail',
                   obsText: false,
                   textController: emailController,
+                  icon: Icons.email,
+                  errorText: 'Please a valid Email',
                 ),
                 const SizedBox(
                   height: 2,
@@ -34,6 +36,8 @@ class LoginScreen extends StatelessWidget {
                   hintText: 'Password',
                   obsText: true,
                   textController: passwordController,
+                  icon: Icons.lock,
+                  errorText: 'Please a Enter Password',
                 ),
                 const SizedBox(
                   height: 5,

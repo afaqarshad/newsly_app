@@ -43,6 +43,8 @@ dependencies:
   firebase_core: ^2.4.1
   carousel_slider: ^4.2.1
   google_sign_in: ^5.4.2
+  cloud_firestore: ^4.3.1
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
