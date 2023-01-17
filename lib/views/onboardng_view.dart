@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
-import 'package:newsly_app/components/slider/slider.dart';
+import 'package:newsly_app/resources/components/slider/slider.dart';
 import 'package:newsly_app/view_models/onboarding_viewmodel.dart';
 import 'package:provider/provider.dart';
 

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationService {
@@ -22,7 +23,7 @@ class AuthenticationService {
           .signInWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
 
-      print("Login Success!");
+      debugPrint("Login Success!");
     } on FirebaseAuthException catch (e) {
       print(e);
     }

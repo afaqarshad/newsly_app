@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
         ChangeNotifierProvider(create: (context) => BottomNavBarViewModel()),
-        ChangeNotifierProvider(create: (context) => AuthViewModel())
+        ChangeNotifierProvider(create: (context) => AuthViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Newsly App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
