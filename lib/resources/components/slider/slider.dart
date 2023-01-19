@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SliderWidget extends StatelessWidget {
-  String image, title, subtitle;
+  final String image, title, subtitle;
 
   SliderWidget(
       {super.key,

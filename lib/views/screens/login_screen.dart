@@ -12,10 +12,11 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthViewModel>(
-      builder: (context, authViewModel, child) {
-        return Scaffold(
-          body: Padding(
+    return Scaffold(
+      body: Consumer<AuthViewModel>(
+        builder: (context, authViewModel, child) {
+          print("loncnnisds");
+          return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -43,8 +44,8 @@ class LoginScreen extends StatelessWidget {
                   height: 5,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    authViewModel.signUp(
+                  onTap: () async {
+                    await authViewModel.login(
                         context: context,
                         email: emailController.text,
                         password: passwordController.text);
@@ -106,9 +107,9 @@ class LoginScreen extends StatelessWidget {
                 )
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

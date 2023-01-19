@@ -12,8 +12,8 @@ class BottomNavBar extends StatelessWidget {
   List pages = [
     HomeScreen(),
     const SavedArticlesScreen(),
-    const NewsSourceScreen(),
-    const ProfilScreen(),
+    NewsSourceScreen(),
+    ProfilScreen(),
   ];
 
   @override
@@ -36,13 +36,13 @@ class BottomNavBar extends StatelessWidget {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: 'Profile'),
               ],
-              currentIndex: selectedIndex,
+              currentIndex: bottomNavBarViewModel.selectedIndex,
               selectedItemColor: const Color(0xff1877F2),
               unselectedItemColor: Colors.grey,
               showUnselectedLabels: true,
               elevation: 20.0,
               onTap: bottomNavBarViewModel.onTapItem),
-          body: pages.elementAt(selectedIndex),
+          body: pages.elementAt(bottomNavBarViewModel.selectedIndex),
         );
       },
     );

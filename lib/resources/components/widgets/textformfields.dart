@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CusttomTextFormFields extends StatelessWidget {
   final String hintText;
-  final TextEditingController textController = TextEditingController();
+  final TextEditingController textController;
   final IconData icon;
   bool? obsText;
   final String errorText;
@@ -11,7 +11,7 @@ class CusttomTextFormFields extends StatelessWidget {
       {super.key,
       required this.hintText,
       required this.obsText,
-      required TextEditingController textController,
+      required this.textController,
       required this.icon,
       required this.errorText});
 
@@ -26,6 +26,10 @@ class CusttomTextFormFields extends StatelessWidget {
         controller: textController,
         obscureText: obsText!,
         style: const TextStyle(color: Colors.black),
+        onChanged: (v) {
+          print(textController.text);
+          print(v);
+        },
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
