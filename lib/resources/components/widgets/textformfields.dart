@@ -4,7 +4,7 @@ class CusttomTextFormFields extends StatelessWidget {
   final String hintText;
   final TextEditingController textController;
   final IconData icon;
-  bool? obsText;
+  final bool? obsText;
   final String errorText;
 
   CusttomTextFormFields(

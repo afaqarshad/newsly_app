@@ -9,7 +9,7 @@ import 'package:newsly_app/views/screens/splash_screen.dart';
 import 'package:newsly_app/views/screens/home.dart';
 import 'package:newsly_app/views/screens/profile_screen.dart';
 
-import '../utils/bottomnavbar.dart';
+import '../views/screens/bottomnavbar.dart';
 import '../views/screens/main_article.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {

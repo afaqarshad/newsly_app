@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/models/news_model.dart';
-import 'package:newsly_app/resources/components/snackbars.dart';
-import 'package:newsly_app/resources/constants.dart';
+import 'package:newsly_app/utils/snackbars.dart';
+import 'package:newsly_app/resources/constants/constants.dart';
 import 'package:newsly_app/view_models/saved_articles_view_model.dart';
 import 'package:provider/provider.dart';
 

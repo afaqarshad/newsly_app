@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:newsly_app/views/onboardng_view.dart';
+import 'package:newsly_app/Routes/routes_name.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,9 +20,11 @@ class _SplashScreenState extends State<SplashScreen> {
   startDelay() {
     Future.delayed(const Duration(seconds: 2), () {
       debugPrint("Time End");
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: ((context) => const OnboardingView())),
-          (route) => false);
+      if (FirebaseAuth.instance.currentUser != null) {
+        Navigator.pushReplacementNamed(context, bottomNavBar);
+      } else {
+        Navigator.pushReplacementNamed(context, logIn);
+      }
     });
   }
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SliderWidget extends StatelessWidget {
   final String image, title, subtitle;
 
-  SliderWidget(
+  const SliderWidget(
       {super.key,
       required this.image,
       required this.title,

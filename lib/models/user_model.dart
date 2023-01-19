@@ -19,7 +19,7 @@ class User {
       'fullname': fullName,
       'email': email,
       'phoneNum': phoneNum,
-      'DOB': dob,
+      'dob': dob,
     };
   }
 
@@ -29,7 +29,7 @@ class User {
       fullName: map['fullname'] as String,
       email: map['email'] as String,
       phoneNum: map['phoneNum'] as String,
-      dob: map['DOB'] as String,
+      dob: map['dob'] as String,
     );
   }
 }

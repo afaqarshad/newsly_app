@@ -23,4 +23,15 @@ class UserViewModel with ChangeNotifier {
     phoneNumController.clear();
     notifyListeners();
   }
+
+  Future<void> updateProfile(
+      {required context,
+      required String name,
+      required String phoneNo,
+      required String dob}) async {
+    await FirebaseFirestore.instance
+        .collection('collectionName')
+        .doc('documentId')
+        .update({'field': 'newValue'});
+  }
 }

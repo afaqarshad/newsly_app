@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/sevices/authentication_service.dart';
@@ -9,12 +8,19 @@ import 'package:newsly_app/models/user_model.dart' as u;
 class AuthViewModel with ChangeNotifier {
   final AuthenticationService authService = AuthenticationService();
 
+  final TextEditingController dobController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneNumController = TextEditingController();
+
   Future<void> signUp(
       {required context,
       required email,
       required password,
       required String name,
-      required String phoneNo}) async {
+      required String phoneNo,
+      required String dob}) async {
     bool result = await authService.signUpWithEmailAndPassword(email, password);
     if (result == true) {
       FirebaseFirestore.instance
@@ -22,7 +28,7 @@ class AuthViewModel with ChangeNotifier {
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .set(u.User(
             email: email,
-            dob: "",
+            dob: dob,
             fullName: name,
             phoneNum: phoneNo,
             id: FirebaseAuth.instance.currentUser!.uid,
@@ -46,8 +52,9 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  logout() {
+  void logout({required context}) {
     authService.logoutAuthentication();
+    Navigator.pushReplacementNamed(context, logIn);
     notifyListeners();
   }
 

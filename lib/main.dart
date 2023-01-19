@@ -4,6 +4,7 @@ import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:newsly_app/view_models/auth_viewmodel.dart';
 import 'package:newsly_app/view_models/bottomnavbar_viewmodel.dart';
+import 'package:newsly_app/view_models/news_Category_ViewModel.dart';
 import 'package:newsly_app/view_models/onboarding_viewmodel.dart';
 import 'package:newsly_app/view_models/saved_articles_view_model.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => BottomNavBarViewModel()),
         ChangeNotifierProvider(create: (context) => AuthViewModel()),
         ChangeNotifierProvider(create: (context) => SavedArticlesViewModel()),
+        ChangeNotifierProvider(create: (context) => NewsCategoryViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
