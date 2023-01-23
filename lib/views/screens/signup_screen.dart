@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
-import 'package:newsly_app/resources/components/widgets/textformfields.dart';
+import 'package:newsly_app/resources/widgets/textformfields.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_models/auth_viewmodel.dart';
@@ -18,7 +18,7 @@ class SignUpScreen extends StatelessWidget {
             padding: const EdgeInsets.all(0.0),
             children: [
               Image.asset('assets/images/logo.png'),
-              CusttomTextFormFields(
+              CustomTextFormField(
                 hintText: 'Name',
                 obsText: false,
                 textController: authViewModel.nameController,
@@ -28,7 +28,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              CusttomTextFormFields(
+              CustomTextFormField(
                 hintText: 'E-mail',
                 obsText: false,
                 textController: authViewModel.emailController,
@@ -38,7 +38,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              CusttomTextFormFields(
+              CustomTextFormField(
                 hintText: 'Password',
                 obsText: true,
                 textController: authViewModel.passwordController,
@@ -48,7 +48,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              CusttomTextFormFields(
+              CustomTextFormField(
                 hintText: 'DOB 1/18/2002',
                 obsText: false,
                 textController: authViewModel.dobController,
@@ -58,7 +58,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              CusttomTextFormFields(
+              CustomTextFormField(
                 hintText: 'Phone Number',
                 obsText: false,
                 textController: authViewModel.phoneNumController,
@@ -77,10 +77,6 @@ class SignUpScreen extends StatelessWidget {
                       name: authViewModel.nameController.text,
                       phoneNo: authViewModel.phoneNumController.text,
                       dob: authViewModel.dobController.text);
-                  authViewModel.nameController.clear();
-                  authViewModel.phoneNumController.clear();
-                  authViewModel.dobController.clear();
-                  // print(FirebaseAuth.instance.currentUser!.uid);
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.07,
@@ -132,7 +128,7 @@ class SignUpScreen extends StatelessWidget {
                     'Already have an account ? ',
                     style: TextStyle(fontFamily: 'Poppins', fontSize: 15),
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, logIn);
                     },

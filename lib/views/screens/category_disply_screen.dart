@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/models/news_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class CategortDisplayScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class CategortDisplayScreen extends StatelessWidget {
           style: const TextStyle(color: Colors.blue),
         ),
       ),
-      body: StreamBuilder<Object>(
+      body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('latest')
             .where(

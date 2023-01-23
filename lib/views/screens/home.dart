@@ -3,13 +3,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/models/news_model.dart';
-import 'package:newsly_app/resources/components/widgets/searchbar.dart';
+import 'package:newsly_app/resources/widgets/searchbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  TextEditingController search = TextEditingController();
+  final TextEditingController search = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +35,10 @@ class HomeScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               height: MediaQuery.of(context).size.height * 0.33,
-              child: StreamBuilder<Object>(
+              child: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('latest')
-                    .where("tag", isEqualTo: "sports")
+                    .where("tag", isEqualTo: "latest")
                     .snapshots(),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (!(snapshot.hasData) ||
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                   }
 
                   List list = snapshot.data!.docs.map((e) {
-                    print(e.id);
+                    debugPrint(e.id);
                     return NewsModel.fromJson(e.data());
                   }).toList();
 
@@ -158,8 +158,10 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         NewsModel newsModel = list[index];
                         if (search.text.isEmpty ||
-                            search.text.toLowerCase().trim().startsWith(
-                                newsModel.tag.toLowerCase().trim())) {
+                            newsModel.tag
+                                .toLowerCase()
+                                .trim()
+                                .startsWith(search.text.toLowerCase().trim())) {
                           return GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, mainArticle,

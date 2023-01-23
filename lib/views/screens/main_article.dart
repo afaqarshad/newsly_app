@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:newsly_app/utils/snackbars.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_models/saved_articles_view_model.dart';
@@ -101,6 +102,14 @@ class MainArticle extends StatelessWidget {
                     return IconButton(
                         onPressed: () {
                           value.addArticle(args);
+                          openIconSnackBar(
+                            context,
+                            'Your Article Saved',
+                            const Icon(
+                              Icons.check,
+                              color: Colors.white,
+                            ),
+                          );
                         },
                         icon: const Icon(
                           Icons.bookmark_add,

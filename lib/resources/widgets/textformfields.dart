@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CusttomTextFormFields extends StatelessWidget {
+class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final TextEditingController textController;
   final IconData icon;
   final bool? obsText;
   final String errorText;
 
-  CusttomTextFormFields(
+  CustomTextFormField(
       {super.key,
       required this.hintText,
       required this.obsText,
@@ -27,8 +27,8 @@ class CusttomTextFormFields extends StatelessWidget {
         obscureText: obsText!,
         style: const TextStyle(color: Colors.black),
         onChanged: (v) {
-          print(textController.text);
-          print(v);
+          debugPrint(textController.text);
+          debugPrint(v);
         },
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(

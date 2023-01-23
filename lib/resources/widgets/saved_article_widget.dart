@@ -4,7 +4,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/models/news_model.dart';
 import 'package:newsly_app/utils/snackbars.dart';
-import 'package:newsly_app/resources/constants/constants.dart';
 import 'package:newsly_app/view_models/saved_articles_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +46,7 @@ class SavedArticleWidget extends StatelessWidget {
           ],
         ),
         child: ListTile(
-          leading: news.imgurl != uploadImageError
+          leading: news.imgurl != 'image error'
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: CachedNetworkImage(

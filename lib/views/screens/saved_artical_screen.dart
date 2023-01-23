@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsly_app/resources/components/widgets/saved_article_widget.dart';
+import 'package:newsly_app/resources/widgets/saved_article_widget.dart';
 import 'package:newsly_app/view_models/saved_articles_view_model.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsly_app/utils/app_toast.dart';
 
@@ -16,27 +16,27 @@ class AuthenticationService {
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == "unknown") {
-        print("Some fild miss please double check");
+        debugPrint("Some fild miss please double check");
       } else if (e.code == "invalid-email") {
-        print("Your email format is not correct please try again");
+        debugPrint("Your email format is not correct please try again");
       } else if (e.code == "weak-password") {
-        print("Password should be greater then 6 digit");
+        debugPrint("Password should be greater then 6 digit");
       } else if (e.code == "email-already-in-use") {
-        print("Your email already exist please try another email");
+        debugPrint("Your email already exist please try another email");
       }
-      print("Firebase e $e");
+      debugPrint("Firebase e $e");
       return false;
     } catch (e) {
-      print("e $e");
+      debugPrint("e $e");
+      return false;
     }
-    return false;
   }
 
   Future<bool> loginAuthentication(email, password) async {
     try {
       UserCredential userCredential = await firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
-      User? user = userCredential.user;
+      userCredential.user;
 
       AppToast.successToast(masg: "SingUp Success!");
       debugPrint("Login Success!");
@@ -50,12 +50,14 @@ class AuthenticationService {
       }
       return false;
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
+      return false;
     }
-    return false;
   }
 
-  void logoutAuthentication() async {
+  Future<void> logoutAuthentication() async {
     await firebaseAuth.signOut();
   }
 
