@@ -8,4 +8,4 @@ const String profile = '/profile';
 const String logIn = '/login';
 const String signUp = '/signup';
 const String mainArticle = '/mainArticle';
-const String categortdisplayscreen = '/categortdisplayscreen';
+const String categortydisplayscreen = '/categortdisplayscreen';

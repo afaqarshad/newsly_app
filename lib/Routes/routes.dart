@@ -38,7 +38,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case mainArticle:
       return MaterialPageRoute(
           builder: (context) => const MainArticle(), settings: settings);
-    case categortdisplayscreen:
+    case categortydisplayscreen:
       return MaterialPageRoute(
           builder: (context) => const CategortDisplayScreen(),
           settings: settings);

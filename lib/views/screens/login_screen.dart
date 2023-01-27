@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/resources/widgets/textformfields.dart';
+import 'package:newsly_app/utils/snackbars.dart';
 import 'package:newsly_app/view_models/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -43,6 +44,24 @@ class LoginScreen extends StatelessWidget {
                         context: context,
                         email: authViewModel.emailController.text,
                         password: authViewModel.passwordController.text);
+                    if (authViewModel.message == true) {
+                      openIconSnackBar(
+                          context,
+                          'Successfully Login',
+                          const Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ));
+                      Navigator.pushReplacementNamed(context, bottomNavBar);
+                    } else {
+                      openIconSnackBar(
+                          context,
+                          authViewModel.message.toString(),
+                          const Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ));
+                    }
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.07,

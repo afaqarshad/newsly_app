@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
 import 'package:newsly_app/resources/widgets/textformfields.dart';
+import 'package:newsly_app/utils/snackbars.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_models/auth_viewmodel.dart';
@@ -71,12 +72,31 @@ class SignUpScreen extends StatelessWidget {
               InkWell(
                 onTap: () async {
                   await authViewModel.signUp(
-                      context: context,
-                      email: authViewModel.emailController.text,
-                      password: authViewModel.passwordController.text,
-                      name: authViewModel.nameController.text,
-                      phoneNo: authViewModel.phoneNumController.text,
-                      dob: authViewModel.dobController.text);
+                    context: context,
+                    email: authViewModel.emailController.text,
+                    password: authViewModel.passwordController.text,
+                    name: authViewModel.nameController.text,
+                    phoneNo: authViewModel.phoneNumController.text,
+                    dob: authViewModel.dobController.text,
+                  );
+                  if (authViewModel.message == true) {
+                    openIconSnackBar(
+                        context,
+                        'Successfully SignUp',
+                        const Icon(
+                          Icons.check,
+                          color: Colors.white,
+                        ));
+                    Navigator.pushReplacementNamed(context, bottomNavBar);
+                  } else {
+                    openIconSnackBar(
+                        context,
+                        authViewModel.message.toString(),
+                        const Icon(
+                          Icons.close,
+                          color: Colors.white,
+                        ));
+                  }
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.07,

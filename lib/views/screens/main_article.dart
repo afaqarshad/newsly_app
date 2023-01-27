@@ -98,10 +98,10 @@ class MainArticle extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Consumer<SavedArticlesViewModel>(
-                  builder: (context, value, child) {
+                  builder: (context, savedArticlesViewModel, child) {
                     return IconButton(
                         onPressed: () {
-                          value.addArticle(args);
+                          savedArticlesViewModel.addArticle(args);
                           openIconSnackBar(
                             context,
                             'Your Article Saved',

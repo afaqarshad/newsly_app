@@ -11,7 +11,10 @@ openIconSnackBar(context, String text, Widget icon) {
           const SizedBox(
             width: 5,
           ),
-          Text(text)
+          Text(
+            text,
+            maxLines: 1,
+          )
         ],
       ),
       duration: const Duration(milliseconds: 2500),

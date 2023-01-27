@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:newsly_app/utils/app_toast.dart';
+import 'package:newsly_app/sevices/data_service.dart';
 
 class AuthenticationService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   String? userEmail;
+  dynamic errorMessage;
 
-  Future<bool> signUpWithEmailAndPassword(email, password) async {
+  Future<dynamic> signUpWithEmailAndPassword(email, password) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -15,45 +15,63 @@ class AuthenticationService {
       );
       return true;
     } on FirebaseAuthException catch (e) {
-      if (e.code == "unknown") {
-        debugPrint("Some fild miss please double check");
-      } else if (e.code == "invalid-email") {
-        debugPrint("Your email format is not correct please try again");
-      } else if (e.code == "weak-password") {
-        debugPrint("Password should be greater then 6 digit");
-      } else if (e.code == "email-already-in-use") {
-        debugPrint("Your email already exist please try another email");
+      switch (e.code) {
+        case "unknown":
+          errorMessage = "Some fild miss please double check";
+          break;
+        case "invalid-email":
+          errorMessage = "Your email format is not correct please try again";
+          break;
+        case "weak-password":
+          errorMessage = "Password should be greater then 6 digit";
+          break;
+        case "email-already-in-use":
+          errorMessage = "Your email already exist please try another email";
+          break;
       }
-      debugPrint("Firebase e $e");
-      return false;
+      // if (e.code == "unknown") {
+      //   errorMessage = "Some fild miss please double check";
+      //   print(errorMessage);
+      // }
+      // else if (e.code == "invalid-email") {
+      //   errorMessage = "Your email format is not correct please try again";
+      //   print(errorMessage);
+      // } else if (e.code == "weak-password") {
+      //   errorMessage = "Password should be greater then 6 digit";
+      //   print(errorMessage);
+      // } else if (e.code == "email-already-in-use") {
+      //   errorMessage = "Your email already exist please try another email";
+      //   print(errorMessage);
+      // }
+
+      return errorMessage;
     } catch (e) {
-      debugPrint("e $e");
-      return false;
+      print(errorMessage);
+      errorMessage = "e $e";
+      return errorMessage;
     }
   }
 
-  Future<bool> loginAuthentication(email, password) async {
+  Future<dynamic> loginAuthentication(email, password) async {
     try {
       UserCredential userCredential = await firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
       userCredential.user;
+      await DataService.getMyUser();
 
-      AppToast.successToast(masg: "SingUp Success!");
-      debugPrint("Login Success!");
+      errorMessage = "SignUp Success!";
       return true;
     } on FirebaseAuthException catch (e) {
-      debugPrint("Firebae Auth $e");
       if (e.code == "wrong-password") {
-        AppToast.failToast(masg: "Your Password is Wrong Please try again");
+        errorMessage = "Your Password is Wrong Please try again";
       } else if (e.code == "user-not-found") {
-        AppToast.failToast(masg: "Email not Found Please try again");
+        errorMessage = "Email not Found Please try again";
       }
-      return false;
+      return errorMessage;
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      return false;
+      errorMessage = e.toString();
+
+      return errorMessage;
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsly_app/Routes/routes_name.dart';
+import 'package:newsly_app/sevices/data_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,9 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   startDelay() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () async {
       debugPrint("Time End");
       if (FirebaseAuth.instance.currentUser != null) {
+        await DataService.getMyUser();
+
         Navigator.pushReplacementNamed(context, bottomNavBar);
       } else {
         Navigator.pushReplacementNamed(context, onBoardingScreen);

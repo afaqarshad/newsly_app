@@ -20,13 +20,20 @@ class SavedArticlesScreen extends StatelessWidget {
       ),
       body: Consumer<SavedArticlesViewModel>(
         builder: (context, value, child) {
-          return ListView.builder(
-              itemCount: value.savedArticles.length,
-              itemBuilder: ((context, index) {
-                return SavedArticleWidget(
-                  news: value.savedArticles[index],
-                );
-              }));
+          return FutureBuilder(
+              future: value.showSavedArticle(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: ((context, index) {
+                        return SavedArticleWidget(
+                          news: snapshot.data![index],
+                        );
+                      }));
+                }
+                return const CircularProgressIndicator();
+              });
         },
       ),
     );

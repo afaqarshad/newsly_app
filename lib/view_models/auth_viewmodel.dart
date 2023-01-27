@@ -14,15 +14,18 @@ class AuthViewModel with ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneNumController = TextEditingController();
 
-  Future<void> signUp(
+  dynamic message;
+
+  Future<dynamic> signUp(
       {required context,
       required email,
       required password,
       required String name,
       required String phoneNo,
       required String dob}) async {
-    bool result = await authService.signUpWithEmailAndPassword(email, password);
-    if (result == true) {
+    dynamic result =
+        await authService.signUpWithEmailAndPassword(email, password);
+    if (result is bool == true) {
       FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -35,23 +38,29 @@ class AuthViewModel with ChangeNotifier {
             phoneNum: phoneNo,
             id: FirebaseAuth.instance.currentUser!.uid,
           ).toJson());
-
-      Navigator.pushReplacementNamed(context, bottomNavBar);
+      message = result;
+      return message;
+      // Navigator.pushReplacementNamed(context, bottomNavBar);
     } else {
-      return;
+      message = result;
+      // notifyListeners();
+      return message;
     }
-    notifyListeners();
   }
 
-  Future<void> login(
+  Future<dynamic> login(
       {required context, required email, required password}) async {
-    bool result = await authService.loginAuthentication(email, password);
-    if (result == true) {
-      Navigator.pushReplacementNamed(context, bottomNavBar);
+    dynamic result = await authService.loginAuthentication(email, password);
+    if (result is bool == true) {
+      message = result;
+      // notifyListeners();
+      // Navigator.pushReplacementNamed(context, bottomNavBar);
+      return result;
     } else {
-      return;
+      message = result;
+      // notifyListeners();
+      return message;
     }
-    notifyListeners();
   }
 
   void logout({required context}) async {
@@ -62,12 +71,12 @@ class AuthViewModel with ChangeNotifier {
     phoneNumController.clear();
     dobController.clear();
     Navigator.pushReplacementNamed(context, logIn);
-    notifyListeners();
+    // notifyListeners();
   }
 
   Future<void> signInWithGoogle({required context}) async {
     await authService.googleAuthentication();
     Navigator.pushNamed(context, bottomNavBar);
-    notifyListeners();
+    // notifyListeners();
   }
 }

@@ -6,7 +6,7 @@ class UserModel {
   final String email;
   final String phoneNum;
   final String dob;
-  final List followedCategories;
+  List followedCategories;
   final List savedArticle;
 
   UserModel({

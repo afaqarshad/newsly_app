@@ -1,10 +1,9 @@
-// ignore_for_file: file_names
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:newsly_app/sevices/data_service.dart';
 
 class NewsCategoryViewModel with ChangeNotifier {
+  final DataService dataService = DataService();
+
   List<String> categoryItem = [
     'Latest',
     'Technology',
@@ -13,11 +12,9 @@ class NewsCategoryViewModel with ChangeNotifier {
     'Health'
   ];
 
-  getNewcategory() {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .snapshots() as Stream<QuerySnapshot<Object?>>?;
+  newsCategory() {
     notifyListeners();
+
+    return dataService.newsCategoryStream();
   }
 }
