@@ -1,31 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:newsly_app/views/home.dart';
+import 'package:newsly_app/Routes/routes.dart';
+import 'package:newsly_app/Routes/routes_name.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:newsly_app/view_models/auth_viewmodel.dart';
+import 'package:newsly_app/view_models/bottomnavbar_viewmodel.dart';
+import 'package:newsly_app/view_models/category_display_viewmodel.dart';
+import 'package:newsly_app/view_models/home_viewmodel.dart';
+import 'package:newsly_app/view_models/news_category_viewmodel.dart';
+import 'package:newsly_app/view_models/onboarding_viewmodel.dart';
+import 'package:newsly_app/view_models/saved_articles_view_model.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => OnboardingViewModel()),
+        ChangeNotifierProvider(create: (context) => BottomNavBarViewModel()),
+        ChangeNotifierProvider(create: (context) => AuthViewModel()),
+        ChangeNotifierProvider(create: (context) => SavedArticlesViewModel()),
+        ChangeNotifierProvider(create: (context) => NewsCategoryViewModel()),
+        ChangeNotifierProvider(create: (context) => CategoryDisplayViewModel()),
+        ChangeNotifierProvider(create: (context) => HomeDisplayViewModel()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Newsly App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: splash,
+        onGenerateRoute: generateRoute,
       ),
-      home: const HomeScreen(),
     );
   }
 }
